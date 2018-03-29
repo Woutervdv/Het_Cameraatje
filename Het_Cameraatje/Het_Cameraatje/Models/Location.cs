@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Het_Cameraatje.Models
 {
-    class Location
+    public class Location
     {
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationID { get; set; }

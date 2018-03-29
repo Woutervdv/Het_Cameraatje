@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Het_Cameraatje.Models
 {
-    class Pictures
+    public class Pictures
     {
         [ForeignKey("PictureID")]
         public int PictureID { get; set; }

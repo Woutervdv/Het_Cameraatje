@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Het_Cameraatje.Models
 { 
-    class Kid
+    public class Kid
     {
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int KidID { get; set; }

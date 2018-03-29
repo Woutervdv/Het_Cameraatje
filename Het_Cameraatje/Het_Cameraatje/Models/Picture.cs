@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Het_Cameraatje.Models
 {
-    class Picture
+    public class Picture
     {
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PictureID { get; set; }
