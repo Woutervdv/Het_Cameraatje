@@ -12,9 +12,9 @@ namespace Het_Cameraatje.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int picture_id { get; set; }
-        public string picture_url { get; set; }
-        public string author { get; set; }
-        public int location_id { get; set; }
+        public int PictureID { get; set; }
+        public string PictureUrl { get; set; }
+        public string Author { get; set; }
+        public int LocationID { get; set; }
     }
 }

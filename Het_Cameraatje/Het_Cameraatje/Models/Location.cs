@@ -12,8 +12,8 @@ namespace Het_Cameraatje.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int location_id { get; set; }
-        public string location_name { get; set; }
-        public string location_description { get; set; }
+        public int LocationID { get; set; }
+        public string LocationName { get; set; }
+        public string LocationDescription { get; set; }
     }
 }

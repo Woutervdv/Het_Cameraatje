@@ -10,7 +10,7 @@ namespace Het_Cameraatje.Models
 {
     class Pictures
     {
-        public int picture_id { get; set; }
-        public int kid_id { get; set; }
+        public int PictureID { get; set; }
+        public int KidID { get; set; }
     }
 }

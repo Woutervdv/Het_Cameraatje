@@ -12,11 +12,11 @@ namespace Het_Cameraatje.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int kid_id { get; set; }
-        public string email { get; set; }
-        public int class_id { get; set; }
-        public string kid_first_name { get; set; }
-        public string kid_last_name { get; set; }
-        public string kid_picture_url { get; set; }
+        public int KidID { get; set; }
+        public string Email { get; set; }
+        public int ClassID { get; set; }
+        public string KidFirstName { get; set; }
+        public string KidLAstName { get; set; }
+        public string KidPictureUrl { get; set; }
     }
 }

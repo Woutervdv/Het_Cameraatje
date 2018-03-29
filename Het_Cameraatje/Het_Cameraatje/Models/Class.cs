@@ -12,8 +12,8 @@ namespace Het_Cameraatje.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int class_id { get; set; }
-        public int teacher_id { get; set; }
-        public string class_name { get; set; }
+        public int ClassID { get; set; }
+        public int DeacherID { get; set; }
+        public string ClassName { get; set; }
     }
 }
