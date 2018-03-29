@@ -15,7 +15,7 @@ namespace Het_Cameraatje.Models
 
         public string Email { get; set; }
 
-        public string TeacherFirstame { get; set; }
+        public string TeacherFirstName { get; set; }
 
         public string TeacherLastName { get; set; } 
     }
