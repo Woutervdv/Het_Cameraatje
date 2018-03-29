@@ -25,6 +25,8 @@ namespace Het_Cameraatje.ViewModels
 
             this.dialogService = dialogService;
             LoginCommand = new DelegateCommand(Login);
+            Email = "email";
+            Password = "paswoord";
 
         }
 
