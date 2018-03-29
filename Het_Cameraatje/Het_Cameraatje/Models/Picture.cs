@@ -10,11 +10,14 @@ namespace Het_Cameraatje.Models
 {
     class Picture
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PictureID { get; set; }
+
         public string PictureUrl { get; set; }
+
         public string Author { get; set; }
+
+        [ForeignKey("LocationID")]
         public int LocationID { get; set; }
     }
 }

@@ -10,10 +10,12 @@ namespace Het_Cameraatje.Models
 {
     class Class
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClassID { get; set; }
-        public int DeacherID { get; set; }
+
+        [ForeignKey("TeacherID")]
+        public int TeacherID { get; set; }
+
         public string ClassName { get; set; }
     }
 }

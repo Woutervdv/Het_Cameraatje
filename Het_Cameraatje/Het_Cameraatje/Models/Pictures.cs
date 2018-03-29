@@ -10,7 +10,10 @@ namespace Het_Cameraatje.Models
 {
     class Pictures
     {
+        [ForeignKey("PictureID")]
         public int PictureID { get; set; }
+
+        [ForeignKey("KidID")]
         public int KidID { get; set; }
     }
 }

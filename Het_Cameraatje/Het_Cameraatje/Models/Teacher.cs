@@ -10,11 +10,13 @@ namespace Het_Cameraatje.Models
 { 
     class Teacher
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TeacherID { get; set; }
+
         public string Email { get; set; }
+
         public string TeacherFirstame { get; set; }
+
         public string TeacherLastName { get; set; } 
     }
 }

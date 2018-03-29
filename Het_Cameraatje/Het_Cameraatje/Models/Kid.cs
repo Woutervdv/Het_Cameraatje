@@ -10,13 +10,20 @@ namespace Het_Cameraatje.Models
 { 
     class Kid
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int KidID { get; set; }
-        public string Email { get; set; }
+
+        public string Email { get; set; } 
+
+        [ForeignKey("ClassID")]
         public int ClassID { get; set; }
+
         public string KidFirstName { get; set; }
+
         public string KidLAstName { get; set; }
+
         public string KidPictureUrl { get; set; }
+
+
     }
 }

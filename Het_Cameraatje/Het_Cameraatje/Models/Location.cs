@@ -10,10 +10,11 @@ namespace Het_Cameraatje.Models
 {
     class Location
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int LocationID { get; set; }
+
         public string LocationName { get; set; }
+
         public string LocationDescription { get; set; }
     }
 }
