@@ -4,11 +4,9 @@
              x:Class="Het_Cameraatje.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
+    <StackLayout> 
+        <Button Text="Start" 
+            Command="{Binding LoginNavigateCommand}"/>
     </StackLayout>
-    <Button Text="Aanmelden"
-            FontSize="Large"
-            Clicked="Aanmelden_Clicked"/>
-
+    
 </ContentPage>

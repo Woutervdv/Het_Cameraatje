@@ -12,11 +12,6 @@ namespace Het_Cameraatje.Views
 		public MainPage ()
 		{
 			InitializeComponent ();
-		}
-
-        public async void Aanmelden_Clicked(object sender, EventArgs arg)
-        {
-            await Navigation.PushAsync(new LoginPage());
-        }
+		} 
 	}
 }

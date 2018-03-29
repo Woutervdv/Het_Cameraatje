@@ -32,6 +32,7 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
+            containerRegistry.RegisterForNavigation<TestPage>();
         }
     }
 }
