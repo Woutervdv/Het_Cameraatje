@@ -15,7 +15,7 @@ namespace Het_Cameraatje.Models
 
         public string PictureUrl { get; set; }
 
-        public string Author { get; set; }
+        public int AuthorID { get; set; }
 
         [ForeignKey("LocationID")]
         public int LocationID { get; set; }
