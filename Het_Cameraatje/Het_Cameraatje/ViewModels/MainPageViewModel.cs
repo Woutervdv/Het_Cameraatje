@@ -20,7 +20,7 @@ namespace Het_Cameraatje.ViewModels
             Title = "Start";
 
             LoginNavigateCommand = new DelegateCommand(() => {
-                navigationService.NavigateAsync("TestPage");
+                navigationService.NavigateAsync("LoginPage");
             });
         }
     }
