@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Het_Cameraatje.Views.LoginPage"
+             Title="{Binding Title}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Entry Grid.Row="1" Grid.Column="0"
+               Text="{Binding Email}"
+               FontSize="Large"
+               HorizontalOptions="CenterAndExpand"
+               WidthRequest="300"/>
+
+        <Entry Grid.Row="2" Grid.Column="0"
+               Text="{Binding Password}"
+               IsPassword="True"
+               FontSize="Large"
+               HorizontalOptions="CenterAndExpand"
+               WidthRequest="300"/>
+
+        <Button Grid.Row="3" Grid.Column="0"
+                Text="Aanmelden"
+                FontSize="Large"
+                Command="{Binding LoginCommand}"/>
+
+
+
+
+    </Grid>
+  
+</ContentPage>
