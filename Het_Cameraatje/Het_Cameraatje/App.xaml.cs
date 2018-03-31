@@ -5,6 +5,8 @@ using Het_Cameraatje.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using Het_Cameraatje.Data;
+using Het_Cameraatje.Contracts;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Het_Cameraatje
@@ -33,6 +35,8 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<TestPage>();
+            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("tweede-cameraatje.database.windows.net"));
+            
         }
     }
 }
