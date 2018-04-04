@@ -20,7 +20,7 @@ namespace Het_Cameraatje.Data
         public DbSet<Kid> Kid { get; set; }
         public DbSet<Location> Location { get; set; }
         public DbSet<Picture> Picture { get; set; }
-        public DbSet<Pictures> pictures { get; set; }
+        public DbSet<Pictures> Pictures { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
 
         private string connectionString;

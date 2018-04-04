@@ -35,7 +35,7 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<TestPage>();
-            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("tweede-cameraatje.database.windows.net"));
+            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Integrated Security=False;User ID=student;Password=********;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
             
         }
     }

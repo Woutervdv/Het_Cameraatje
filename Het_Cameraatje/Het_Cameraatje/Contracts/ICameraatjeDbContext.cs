@@ -14,7 +14,7 @@ namespace Het_Cameraatje.Contracts
         DbSet<Kid> Kid { get; set; }
         DbSet<Location> Location { get; set; }
         DbSet<Picture> Picture { get; set; }
-        DbSet<Pictures> pictures { get; set; }
+        DbSet<Pictures> Pictures { get; set; }
         DbSet<Teacher> Teacher { get; set; }
 
 
