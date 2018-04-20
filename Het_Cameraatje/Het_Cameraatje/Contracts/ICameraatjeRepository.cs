@@ -10,6 +10,6 @@ namespace Het_Cameraatje.Contracts
 {
     public interface ICameraatjeRepository
     {
-        Task<List<Pictures>> GetPicturesAsync();
+        Task<List<Picture>> GetPicturesAsync();
     }
 }

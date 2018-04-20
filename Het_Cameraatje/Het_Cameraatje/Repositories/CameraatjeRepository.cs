@@ -12,11 +12,14 @@ using Firebase.Auth;
  */
 namespace Het_Cameraatje.Repositories
 {
+    
     public class CameraatjeRepository : ICameraatjeRepository
     {
+        private List<Picture> photos = new List<Picture>();
         private ICameraatjeDbContext dbContext;
         private FirebaseAuth firebaseAuth;
-        public async Task<List<Pictures>> GetPicturesAsync()
+        private Picture currentimage;
+        public async Task<List<Picture>> GetPicturesAsync()
         {
             //get current user
             var user = firebaseAuth.User.Email;
@@ -24,16 +27,36 @@ namespace Het_Cameraatje.Repositories
             var ID = from kid in dbContext.Kid
                      where kid.Email == user
                      select kid.KidID;
-            
-           
+
+
             //ga tabel met pictures af en seleteer degene met zelfde KidId al gebruiker
             var photoList = from photo in dbContext.Pictures
                             where photo.KidID == Convert.ToInt32(ID)
-                            select photo;
+                            select photo.PictureID;
+
+            //ga van elke picture met opgehaald picture id hetr object opghalen en steek in een lijst
+            foreach (var photo in photoList)
+            {
+                var image = from images in dbContext.Picture
+                            where images.PictureID == photo
+                            select images;
 
 
-            //maak lijst van geselecteerde foto's en return
-            return await photoList.ToListAsync();
+                photos.Add((Picture)image);
+
+            }
+
+            
+            await Task.Run<List<Picture>>(() =>
+             {
+                 //maak lijst van geselecteerde foto's en return
+                 return photos;
+             }
+
+
+             );
+            //als er iets fout loopt
+            return null;
         }
     }
 }
