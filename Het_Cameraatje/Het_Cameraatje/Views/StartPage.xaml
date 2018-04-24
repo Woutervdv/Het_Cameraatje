@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="Het_Cameraatje.Views.TestPage">
-
+             x:Class="Het_Cameraatje.Views.StartPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding PictureUrl}"/>
-            <Image Source="{Binding PictureUrl}"/>
+            <Button x:Name="btnHome" Text="Home" Command="{Binding LoginNavigateCommand}"/>
+            <Button x:Name="btnSchool" Text="School" Command="{Binding LoginNavigateCommand}"/> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

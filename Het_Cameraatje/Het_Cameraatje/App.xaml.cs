@@ -26,7 +26,7 @@ namespace Het_Cameraatje
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/StartPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,9 +34,8 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
-            containerRegistry.RegisterForNavigation<TestPage>();
-            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Integrated Security=False;User ID=student;Password=********;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-            
+            //containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Integrated Security=False;User ID=student;Password=********;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            containerRegistry.RegisterForNavigation<StartPage>();
         }
     }
 }

@@ -10,6 +10,9 @@ namespace Het_Cameraatje.Models
 {
     public class Pictures
     {
+        [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PictureCount { get; set; }
+
         [ForeignKey("PictureID")]
         public int PictureID { get; set; }
 

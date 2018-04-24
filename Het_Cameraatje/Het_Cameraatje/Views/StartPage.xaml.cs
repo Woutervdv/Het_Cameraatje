@@ -2,9 +2,9 @@
 
 namespace Het_Cameraatje.Views
 {
-    public partial class TestPage : ContentPage
+    public partial class StartPage : ContentPage
     {
-        public TestPage()
+        public StartPage()
         {
             InitializeComponent();
         }
