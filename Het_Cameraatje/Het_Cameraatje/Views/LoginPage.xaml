@@ -16,15 +16,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        
+        
         <Entry Grid.Row="1" Grid.Column="0"
-               Text="{Binding Email}"
+               Placeholder="{Binding Email}"
                FontSize="Large"
                HorizontalOptions="CenterAndExpand"
                WidthRequest="300"/>
 
         <Entry Grid.Row="2" Grid.Column="0"
-               Text="{Binding Password}"
+               Placeholder="{Binding Password}"
                IsPassword="True"
                FontSize="Large"
                HorizontalOptions="CenterAndExpand"

@@ -19,22 +19,25 @@ namespace Het_Cameraatje.ViewModels
         {
             Title = "Start";
 
-            int state;
+            int state = 0;
             /* 
              * int state
-             *  case 0: Home 
-             *      teacher login
-             *  case 1: School 
+             *  case 0: Default
+             *  case 1: Home 
              *      kid login
+             *  case 2: School 
+             *      teacher login
              */
 
             this.navigationService = navigationService;
 
             LoginNavigateCommand = new DelegateCommand(() =>
             {
-                state = 0;
-                string test = LoginNavigateCommand.ToString();
-                navigationService.NavigateAsync("LoginPage");
+                //if (sender == btnHome) state = 1; 
+                //else if (sender == btnSchool) state = 1;
+                var p = new NavigationParameters();
+                p.Add("state", state);
+                navigationService.NavigateAsync("LoginPage", p);
             }); 
         }
 	}

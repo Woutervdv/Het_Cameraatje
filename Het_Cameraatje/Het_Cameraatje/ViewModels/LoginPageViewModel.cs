@@ -27,7 +27,6 @@ namespace Het_Cameraatje.ViewModels
             LoginCommand = new DelegateCommand(Login);
             Email = "email";
             Password = "paswoord";
-
         }
 
         public ICommand LoginCommand { get; private set; }
@@ -42,6 +41,14 @@ namespace Het_Cameraatje.ViewModels
             }catch(Exception ex)
             {
                 await dialogService.DisplayAlertAsync("exeption has been thrown", ex.Message, "OK");
+            }
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("state"))
+            {
+
             }
         }
 
@@ -61,8 +68,7 @@ namespace Het_Cameraatje.ViewModels
             get { return password; }
             set { password = value; }
         }
-
-
+         
 
     }
 }
