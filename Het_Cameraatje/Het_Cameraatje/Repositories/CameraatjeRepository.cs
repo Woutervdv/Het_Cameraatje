@@ -18,7 +18,13 @@ namespace Het_Cameraatje.Repositories
         private List<Picture> photos = new List<Picture>();
         private ICameraatjeDbContext dbContext;
         private FirebaseAuth firebaseAuth;
-        private Picture currentimage;
+
+        public CameraatjeRepository( ICameraatjeDbContext dbContext, FirebaseAuth firebaseAuth)
+        {
+            this.dbContext = dbContext;
+            this.firebaseAuth = firebaseAuth;
+        }
+
         public async Task<List<Picture>> GetPicturesAsync()
         {
             //get current user

@@ -7,6 +7,8 @@ using Xamarin.Forms.Xaml;
 using Prism.Unity;
 using Het_Cameraatje.Data;
 using Het_Cameraatje.Contracts;
+using Het_Cameraatje.Repositories;
+
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Het_Cameraatje
@@ -34,7 +36,8 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
-            //containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Integrated Security=False;User ID=student;Password=********;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Persist Security Info=True;User ID=student;Password=Eloict2018"));
+            containerRegistry.Register<ICameraatjeRepository, CameraatjeRepository>();
             containerRegistry.RegisterForNavigation<StartPage>();
         }
     }
