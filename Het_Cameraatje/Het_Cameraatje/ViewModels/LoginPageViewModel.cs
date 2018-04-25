@@ -19,7 +19,24 @@ namespace Het_Cameraatje.ViewModels
         IPageDialogService dialogService;
 
         private string environment;
-        
+
+        private string email; 
+        public string Email
+        {
+            get { return email; }
+            set { SetProperty(ref email, value); }
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set { SetProperty(ref password, value); }
+        }
+
+        public ICommand LoginCommand { get; private set; } 
+        public ICommand BackCommand { get; private set; }
+
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService )
             : base(navigationService)
         {
@@ -32,11 +49,7 @@ namespace Het_Cameraatje.ViewModels
             {
                 NavigationService.GoBackAsync();
             });
-        }
-
-        public ICommand LoginCommand { get; private set; }
-
-        public ICommand BackCommand { get; private set; }
+        } 
 
         private void Login()
         {
@@ -82,21 +95,6 @@ namespace Het_Cameraatje.ViewModels
             {
                 await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldige logingegevens", "OK");
             }
-        }
-
-        private string email;
-        public string Email
-        {
-            get { return email; }
-            set { SetProperty(ref email, value); }
-        }
-
-        private string password;
-
-        public string Password
-        {
-            get { return password; }
-            set { SetProperty(ref password, value); }
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
