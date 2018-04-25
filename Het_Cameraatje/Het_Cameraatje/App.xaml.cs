@@ -29,7 +29,6 @@ namespace Het_Cameraatje
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/StartPage");
-            await NavigationService.NavigateAsync("NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
