@@ -25,8 +25,6 @@ namespace Het_Cameraatje.ViewModels
 
             this.dialogService = dialogService;
             LoginCommand = new DelegateCommand(Login);
-            Email = "email";
-            Password = "paswoord";
         }
 
         public ICommand LoginCommand { get; private set; }
@@ -38,27 +36,18 @@ namespace Het_Cameraatje.ViewModels
                 var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyC0s-FL-aZghQFNfigs5pQG8TvtiiJHG5c"));
                 var a = await auth.SignInWithEmailAndPasswordAsync(Email , Password);
                 await dialogService.DisplayAlertAsync("aanmelden succesvol","goed bezig", "OK");
-            }catch(Exception ex)
-            {
-                await dialogService.DisplayAlertAsync("exeption has been thrown", ex.Message, "OK");
             }
-        }
-
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-            if (parameters.ContainsKey("state"))
+            catch (Exception ex)
             {
-
+                await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldige logingegevens", "OK");
             }
-        }
-
+        } 
 
         private string email;
-
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set { SetProperty(ref email, value); }
         }
 
         private string password;
@@ -66,9 +55,18 @@ namespace Het_Cameraatje.ViewModels
         public string Password
         {
             get { return password; }
-            set { password = value; }
+            set { SetProperty(ref password, value); }
         }
-         
+
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("Environment"))
+            {
+                Email = (string)parameters["Environment"];
+            }
+        }
+
 
     }
 }

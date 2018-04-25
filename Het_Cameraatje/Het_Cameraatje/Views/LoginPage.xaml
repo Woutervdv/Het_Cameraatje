@@ -19,13 +19,16 @@
         
         
         <Entry Grid.Row="1" Grid.Column="0"
-               Placeholder="{Binding Email}"
+               Text="{Binding Email}"
+               Placeholder="Email"
                FontSize="Large"
+               Keyboard="Email"
                HorizontalOptions="CenterAndExpand"
                WidthRequest="300"/>
 
         <Entry Grid.Row="2" Grid.Column="0"
-               Placeholder="{Binding Password}"
+               Text="{Binding Password}"
+               Placeholder="Password"
                IsPassword="True"
                FontSize="Large"
                HorizontalOptions="CenterAndExpand"

@@ -6,8 +6,8 @@
              x:Class="Het_Cameraatje.Views.StartPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="btnHome" Text="Home" Command="{Binding LoginNavigateCommand}"/>
-            <Button x:Name="btnSchool" Text="School" Command="{Binding LoginNavigateCommand}"/> 
+            <Button x:Name="btnHome" Text="Home" Command="{Binding HomeCommand}"/>
+            <Button x:Name="btnSchool" Text="School" Command="{Binding SchoolCommand}"/> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
