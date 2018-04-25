@@ -17,6 +17,8 @@ namespace Het_Cameraatje.ViewModels
 	public class LoginPageViewModel : ViewModelBase 
 	{
         IPageDialogService dialogService;
+
+        private string environment;
         
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService )
             : base(navigationService)
@@ -25,23 +27,62 @@ namespace Het_Cameraatje.ViewModels
 
             this.dialogService = dialogService;
             LoginCommand = new DelegateCommand(Login);
+
+            BackCommand = new DelegateCommand(() =>
+            {
+                NavigationService.GoBackAsync();
+            });
         }
 
         public ICommand LoginCommand { get; private set; }
-        private async void Login()
+
+        public ICommand BackCommand { get; private set; }
+
+        private void Login()
         {
-          
+            char[] deviders = { '@', '.' };
+            string[] split = Email.Split(deviders);
+            if (split.Count() == 3)
+            {
+                switch (environment)
+                {
+                    case "Home":
+                        if (split[1].ToLower() == "student")
+                        {
+                            firebaseLogin();
+                        }
+                        else dialogService.DisplayAlertAsync("Aanmeldfout", "Verkeerd accounttype", "ok");
+                        break;
+                    case "School":
+                        if (split[1].ToLower() == "teacher")
+                        {
+                            firebaseLogin();
+                        }
+                        else dialogService.DisplayAlertAsync("Aanmeldfout", "Verkeerd accounttype", "ok");
+                        break;
+                }
+            }
+            else dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldig emailadres", "ok");
+        }
+
+        private async void firebaseLogin()
+        {
             try
             {
                 var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyC0s-FL-aZghQFNfigs5pQG8TvtiiJHG5c"));
-                var a = await auth.SignInWithEmailAndPasswordAsync(Email , Password);
-                await dialogService.DisplayAlertAsync("aanmelden succesvol","goed bezig", "OK");
+                var a = await auth.SignInWithEmailAndPasswordAsync(Email, Password);
+                await dialogService.DisplayAlertAsync("aanmelden succesvol", environment, "OK");
+
+                var p = new NavigationParameters();
+                p.Add("Environment", environment);
+                p.Add("Auth", a);
+                await NavigationService.NavigateAsync("HomePage", p);
             }
             catch (Exception ex)
             {
                 await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldige logingegevens", "OK");
             }
-        } 
+        }
 
         private string email;
         public string Email
@@ -58,12 +99,11 @@ namespace Het_Cameraatje.ViewModels
             set { SetProperty(ref password, value); }
         }
 
-
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("Environment"))
             {
-                Email = (string)parameters["Environment"];
+                environment = (string)parameters["Environment"];
             }
         }
 

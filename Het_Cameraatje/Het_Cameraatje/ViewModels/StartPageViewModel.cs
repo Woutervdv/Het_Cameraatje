@@ -23,18 +23,14 @@ namespace Het_Cameraatje.ViewModels
             this.navigationService = navigationService;
 
             HomeCommand = new DelegateCommand(() =>
-            {
-                //if (sender == btnHome) state = 1; 
-                //else if (sender == btnSchool) state = 1;
+            { 
                 var p = new NavigationParameters();
                 p.Add("Environment", "Home");
                 NavigationService.NavigateAsync("LoginPage", p);
             });
 
             SchoolCommand = new DelegateCommand(() =>
-            {
-                //if (sender == btnHome) state = 1; 
-                //else if (sender == btnSchool) state = 1;
+            { 
                 var p = new NavigationParameters();
                 p.Add("Environment", "School");
                 NavigationService.NavigateAsync("LoginPage", p);

@@ -5,20 +5,14 @@
              xmlns:custom="clr-namespace:Het_Cameraatje.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Het_Cameraatje.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False"
              Title="{Binding Title}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    
+    <ContentPage.Content>
         
-        
-        <Entry Grid.Row="1" Grid.Column="0"
+        <StackLayout>
+            
+            <Entry 
                Text="{Binding Email}"
                Placeholder="Email"
                FontSize="Large"
@@ -26,7 +20,7 @@
                HorizontalOptions="CenterAndExpand"
                WidthRequest="300"/>
 
-        <Entry Grid.Row="2" Grid.Column="0"
+            <Entry 
                Text="{Binding Password}"
                Placeholder="Password"
                IsPassword="True"
@@ -34,10 +28,18 @@
                HorizontalOptions="CenterAndExpand"
                WidthRequest="300"/>
 
-        <Button Grid.Row="3" Grid.Column="0"
+            <Button
                 Text="Aanmelden"
                 FontSize="Large"
-                Command="{Binding LoginCommand}"/> 
-    </Grid>
+                Command="{Binding LoginCommand}"/>
+            
+            <Button
+                Text="Terug"
+                FontSize="Large"
+                Command="{Binding BackCommand}"/>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
   
 </ContentPage>
