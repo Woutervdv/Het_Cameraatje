@@ -39,7 +39,7 @@
                 Command="{Binding BackCommand}"/>
             
         </StackLayout>
-        
+       
     </ContentPage.Content>
   
 </ContentPage>
