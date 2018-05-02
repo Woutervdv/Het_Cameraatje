@@ -35,65 +35,69 @@ namespace Het_Cameraatje.ViewModels
         }
 
         public ICommand LoginCommand { get; private set; } 
-        public ICommand BackCommand { get; private set; }
+        public ICommand BackCommand { get; private set; }  
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService )
             : base(navigationService)
         {
             Title = "Aanmelden";
+            Email = string.Empty;
 
             this.dialogService = dialogService;
-            LoginCommand = new DelegateCommand(Login);
+            LoginCommand = new DelegateCommand(firebaseLogin);
 
             BackCommand = new DelegateCommand(() =>
             {
                 NavigationService.GoBackAsync();
             });
-        } 
-
-        private void Login()
-        {
-            char[] deviders = { '@', '.' };
-            string[] split = Email.Split(deviders);
-            if (split.Count() == 3)
-            {
-                switch (environment)
-                {
-                    case "Home":
-                        if (split[1].ToLower() == "student")
-                        {
-                            firebaseLogin();
-                        }
-                        else dialogService.DisplayAlertAsync("Aanmeldfout", "Verkeerd accounttype", "ok");
-                        break;
-                    case "School":
-                        if (split[1].ToLower() == "teacher")
-                        {
-                            firebaseLogin();
-                        }
-                        else dialogService.DisplayAlertAsync("Aanmeldfout", "Verkeerd accounttype", "ok");
-                        break;
-                }
-            }
-            else dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldig emailadres", "ok");
-        }
+        }  
 
         private async void firebaseLogin()
         {
-            try
+            if (AccountType(email) != -1)
             {
-                var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyC0s-FL-aZghQFNfigs5pQG8TvtiiJHG5c"));
-                var a = await auth.SignInWithEmailAndPasswordAsync(Email, Password);
-                await dialogService.DisplayAlertAsync("aanmelden succesvol", environment, "OK");
+                try
+                {
+                    var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyC0s-FL-aZghQFNfigs5pQG8TvtiiJHG5c"));
+                    var a = await auth.SignInWithEmailAndPasswordAsync(Email.Trim(), Password.Trim());
+                    await dialogService.DisplayAlertAsync("aanmelden succesvol", environment, "OK");
 
-                var p = new NavigationParameters();
-                p.Add("Environment", environment);
-                p.Add("Auth", a);
-                await NavigationService.NavigateAsync("HomePage", p);
+                    var p = new NavigationParameters();
+                    p.Add("Environment", environment);
+                    p.Add("Auth", a);
+                    await NavigationService.NavigateAsync("HomePage", p);
+                }
+                catch (Exception)
+                {
+                    await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldige logingegevens", "OK");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldige logingegevens", "OK");
+                await dialogService.DisplayAlertAsync("Aanmeldfout", "Ongeldig Emailadres", "OK");
+            }
+        }
+
+        private int AccountType(string emailToCheck)
+        {
+            if (emailToCheck == "")
+            {
+                return -1;
+            }
+            char[] deviders = { '@', '.' };
+            string[] splitted = emailToCheck.Split(deviders);
+            if (!emailToCheck.Contains("@") && !emailToCheck.Contains("."))
+            {
+                return -1;
+            }
+            switch (splitted[splitted.Length-2])
+            {
+                case "student":
+                    return 1;
+                case "teacher":
+                    return 2;
+                default:
+                    return 0;
             }
         }
 
@@ -102,7 +106,7 @@ namespace Het_Cameraatje.ViewModels
             if (parameters.ContainsKey("Environment"))
             {
                 environment = (string)parameters["Environment"];
-            }
+            } 
         }
 
 
