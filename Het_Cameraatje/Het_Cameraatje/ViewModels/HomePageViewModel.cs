@@ -9,6 +9,10 @@ using System.Linq;
 using System.Windows.Input;
 using Het_Cameraatje.Repositories;
 using Het_Cameraatje.Contracts;
+using Plugin.Media;
+using Firebase.Storage;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 /*
  * created by Wouter on 25/04/2018
@@ -19,10 +23,24 @@ namespace Het_Cameraatje.ViewModels
 	public class HomePageViewModel : ViewModelBase
     {
         private IPageDialogService dialogService;
-        FirebaseAuthLink auth;
-        private string enviroment;
-
         
+        private string environment;
+
+        public User user { get; set; }
+        private bool visible;
+        public bool Visible
+        {
+            get { return visible; }
+            set { SetProperty(ref visible, value); }
+        }
+
+        private ImageSource source;
+        public ImageSource Source
+        {
+            get { return source; }
+            set { SetProperty(ref source, value); }
+        }
+
 
 
         public ICommand LogOutCommand { get; private set; }
@@ -30,23 +48,79 @@ namespace Het_Cameraatje.ViewModels
         public ICommand CameraCommand { get; private set; }
         public ICommand ReturnCommand { get; private set; }
 
-        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService)
+         public  HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService)
             : base(navigationService)
         {
-
+            Visible = false;
             LogOutCommand = new DelegateCommand(() =>
             {
                 NavigationService.NavigateAsync("StartPage");
             });
 
-            AlbumCommand = new DelegateCommand(() =>
+            AlbumCommand = new DelegateCommand(async () =>
             {
-                dialogService.DisplayAlertAsync("Album", "word getoond", "ok");
+                var p = new NavigationParameters();
+                p.Add("Environment", environment);
+                p.Add("User", user);
+                await NavigationService.NavigateAsync("GalleryPage", p);
             });
 
-            CameraCommand = new DelegateCommand(() =>
+            CameraCommand = new DelegateCommand(async () =>
             {
-                dialogService.DisplayAlertAsync("Camera", "word getoond", "ok");
+
+                await CrossMedia.Current.Initialize();
+
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    await dialogService.DisplayAlertAsync("No Camera", ":( No camera available.", "OK");
+                    return;
+                }
+
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+                    Directory = "Sample",
+                    Name = "test.jpg"
+                });
+
+                if (file == null)
+                    return;
+
+                await dialogService.DisplayAlertAsync("File Location", "is opgeslagen ", "OK");
+
+                Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+
+                try
+                {
+                   
+
+                    // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
+                    var task = new FirebaseStorage(
+                        "gs://het-cameraatje.appspot.com/",
+                        new FirebaseStorageOptions
+                        {
+                            AuthTokenAsyncFactory = () => Task.FromResult(user.Auth.FirebaseToken),
+                        })
+                        .Child("data")
+                        .Child("random")
+                        .Child("file.png")
+                        .PutAsync(file.GetStream());
+
+                    // Track progress of the upload
+                    //task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
+
+                    // await the task to wait until upload completes and get the download url
+                    var downloadUrl = await task;
+                    await dialogService.DisplayAlertAsync("Download Url", downloadUrl, "OK");
+                }
+                catch (Exception ex)
+                {
+                    await dialogService.DisplayAlertAsync("Exception was thrown", ex.Message, "OK");
+                }
+
             });
 
             ReturnCommand = new DelegateCommand(() =>
@@ -72,12 +146,13 @@ namespace Het_Cameraatje.ViewModels
         {
             if (parameters.ContainsKey("Environment"))
             {
-                enviroment = (string)parameters["Environment"];
+                environment = (string)parameters["Environment"];
             }
-            if (parameters.ContainsKey("Auth"))
+            if (parameters.ContainsKey("User"))
             {
-                auth = (FirebaseAuthLink)parameters["Auth"];
-              
+                user = (User)parameters["User"];
+
+                Visible = user.School;
             }
         }
     }
