@@ -15,10 +15,12 @@
             <Grid VerticalOptions="Center" HorizontalOptions="Center">
                 <Button Grid.Column="0" Text="Foto" 
                         Command="{Binding CameraCommand}"
+                        
                     />
 
                 <Button Grid.Column="1" Text="Album" 
                         Command="{Binding AlbumCommand}"
+                        
                     />
 
             </Grid>

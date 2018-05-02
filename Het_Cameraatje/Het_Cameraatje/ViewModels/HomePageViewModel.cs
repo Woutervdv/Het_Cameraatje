@@ -21,8 +21,10 @@ namespace Het_Cameraatje.ViewModels
         private IPageDialogService dialogService;
         FirebaseAuthLink auth;
         private string enviroment;
+
         
-       
+
+
         public ICommand LogOutCommand { get; private set; }
         public ICommand AlbumCommand { get; private set; }
         public ICommand CameraCommand { get; private set; }
@@ -31,6 +33,7 @@ namespace Het_Cameraatje.ViewModels
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService)
             : base(navigationService)
         {
+
             LogOutCommand = new DelegateCommand(() =>
             {
                 NavigationService.NavigateAsync("StartPage");
