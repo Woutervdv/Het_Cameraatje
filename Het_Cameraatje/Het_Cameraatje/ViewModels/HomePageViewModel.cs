@@ -99,7 +99,7 @@ namespace Het_Cameraatje.ViewModels
 
                     // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
                     var task = new FirebaseStorage(
-                        "gs://het-cameraatje.appspot.com/",
+                        "het-cameraatje.appspot.com",
                         new FirebaseStorageOptions
                         {
                             AuthTokenAsyncFactory = () => Task.FromResult(user.Auth.FirebaseToken),
