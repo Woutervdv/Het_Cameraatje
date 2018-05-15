@@ -17,7 +17,7 @@ namespace Het_Cameraatje.ViewModels
 	public class LoginPageViewModel : ViewModelBase 
 	{
         IPageDialogService dialogService;
-
+        private User user;
         private string environment;
 
         private string email; 
@@ -61,10 +61,14 @@ namespace Het_Cameraatje.ViewModels
                     var auth = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyC0s-FL-aZghQFNfigs5pQG8TvtiiJHG5c"));
                     var a = await auth.SignInWithEmailAndPasswordAsync(Email.Trim(), Password.Trim());
                     await dialogService.DisplayAlertAsync("aanmelden succesvol", environment, "OK");
-
+                    if (environment == "School")
+                        user = new User(a, false);
+                    else
+                        user = new User(a, true);
+                    
                     var p = new NavigationParameters();
                     p.Add("Environment", environment);
-                    p.Add("Auth", a);
+                    p.Add("User", user);
                     await NavigationService.NavigateAsync("HomePage", p);
                 }
                 catch (Exception)

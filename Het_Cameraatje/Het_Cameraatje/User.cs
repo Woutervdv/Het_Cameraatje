@@ -5,10 +5,16 @@ using System.Text;
 
 namespace Het_Cameraatje
 {
-    class User
+    public class User
     {
-        public int UserId { get; set; }
+        
         public FirebaseAuthLink Auth { get; set; }
-        public bool IsTeacher { get; set; }
+        public bool School { get; set; }
+
+        public User(FirebaseAuthLink auth, bool enviroment)
+        {
+            Auth = auth;
+            School = enviroment;
+        }
     }
 }
