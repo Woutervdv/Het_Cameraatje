@@ -41,6 +41,7 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.RegisterForNavigation<HomePage>();
             containerRegistry.RegisterForNavigation<KidListPage>();
+            containerRegistry.RegisterForNavigation<PartnerListPage>();
         }
     }
 }
