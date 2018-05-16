@@ -7,7 +7,7 @@
              x:Class="Het_Cameraatje.Views.CornerListPage">
     
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Locations}" Margin="20">
+        <ListView ItemsSource="{Binding Locations}" Margin="20" SelectedItem="{Binding SelectedLocation, Mode=TwoWay}">
             <ListView.ItemsTemplate>
                 <DataTemplate>
                     <ViewCell>
