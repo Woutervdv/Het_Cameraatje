@@ -13,26 +13,43 @@ namespace Het_Cameraatje.ViewModels
 {
 	public class KidListPageViewModel : ViewModelBase
 	{
-        private ICameraatjeDbContext dbcontext;
+        private ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
         
         private IList<Kid> kids;
-
-        //nav params
-        private string environment;
-        public User user { get; set; }
         public IList<Kid> Kids
         {
             set { SetProperty(ref kids, value); }
             get { return kids; }
         }
-        public KidListPageViewModel(INavigationService navigationService)
-          :  base (navigationService)
-        {
 
+        private Kid selectedKid;
+        public Kid SelectedKid
+        {
+            get { return selectedKid; }
+            set
+            {
+                if (SetProperty(ref selectedKid, value) && selectedKid != null)
+                {
+                    var p = new NavigationParameters();
+                    p.Add("Kid", selectedKid);
+                    p.Add("Environment", environment);
+                    p.Add("User", user);
+                    NavigationService.NavigateAsync("CornerListPage", p);
+                    selectedKid = null;
+                }
+            }
         }
 
+        private string environment;
+        public User user { get; set; }
 
+        public KidListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo)
+          :  base (navigationService)
+        {
+            this.dbContext = dbContext;
+            this.repo = repo;
+        }
 
         public async override void OnNavigatedTo(NavigationParameters parameters)
         {
@@ -43,10 +60,8 @@ namespace Het_Cameraatje.ViewModels
             if (parameters.ContainsKey("User"))
             {
                 user = (User)parameters["User"];
-
-
             }
-            repo = new CameraatjeRepository(dbcontext, user);
+            repo = new CameraatjeRepository(dbContext, user);
             Kids = await repo.GetKids();
         }
     }
