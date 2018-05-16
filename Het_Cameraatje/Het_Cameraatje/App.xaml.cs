@@ -40,6 +40,7 @@ namespace Het_Cameraatje
             containerRegistry.Register<ICameraatjeRepository, CameraatjeRepository>();
             containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<KidListPage>();
         }
     }
 }
