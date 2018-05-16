@@ -16,19 +16,22 @@ namespace Het_Cameraatje.Repositories
     public class CameraatjeRepository : ICameraatjeRepository
     {
         private List<Picture> photos = new List<Picture>();
+        private List<Kid> child = new List<Kid>();
         private ICameraatjeDbContext dbContext;
-        private FirebaseAuth firebaseAuth;
+        private User firebaseAuth;
 
-        public CameraatjeRepository( ICameraatjeDbContext dbContext, FirebaseAuth firebaseAuth)
+        public CameraatjeRepository( ICameraatjeDbContext dbContext, User firebaseAuth)
         {
             this.dbContext = dbContext;
             this.firebaseAuth = firebaseAuth;
         }
 
+        
+
         public async Task<List<Picture>> GetPicturesAsync()
         {
             //get current user
-            var user = firebaseAuth.User.Email;
+            var user = firebaseAuth.Auth.User.Email;
             //get Kid that is linked to this account
             var ID = from kid in dbContext.Kid
                      where kid.Email == user
@@ -64,5 +67,24 @@ namespace Het_Cameraatje.Repositories
             //als er iets fout loopt
             return null;
         }
+
+        public async Task<List<Kid>> GetKids()
+        {
+            var kids = from children in dbContext.Kid
+                       select children;
+
+            await Task.Run<List<Kid>>(() =>
+            {
+                foreach (var kid in kids)
+                {
+                    child.Add(kid);
+                }
+                return child;
+            });
+
+            //als er iets fout loopt
+            return null;
+        }
+
     }
 }

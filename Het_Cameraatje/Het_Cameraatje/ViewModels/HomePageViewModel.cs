@@ -106,7 +106,6 @@ namespace Het_Cameraatje.ViewModels
                         })
                         .Child("data")
                         .Child("random")
-                        .Child("file.png")
                         .PutAsync(file.GetStream());
 
                     // Track progress of the upload
@@ -115,6 +114,10 @@ namespace Het_Cameraatje.ViewModels
                     // await the task to wait until upload completes and get the download url
                     var downloadUrl = await task;
                     await dialogService.DisplayAlertAsync("Download Url", downloadUrl, "OK");
+                    var p = new NavigationParameters();
+                    p.Add("Environment", environment);
+                    p.Add("User", user);
+                    await NavigationService.NavigateAsync("KidListPage", p);
                 }
                 catch (Exception ex)
                 {

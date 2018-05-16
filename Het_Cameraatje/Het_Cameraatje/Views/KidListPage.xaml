@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Het_Cameraatje.Views.KidListPage">
+
+
+    <ListView ItemsSource="{Binding Kids}" Margin="20" >
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                        <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                        <Image HorizontalOptions="End">
+                            <Image.Source>
+                                <OnPlatform x:TypeArguments="ImageSource" iOS="KidPictureUrl" Android="KidPictureUrl" />
+                            </Image.Source>
+                        </Image>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
