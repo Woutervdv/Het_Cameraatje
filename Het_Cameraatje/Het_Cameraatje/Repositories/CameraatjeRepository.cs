@@ -86,5 +86,22 @@ namespace Het_Cameraatje.Repositories
             return null;
         }
 
+        public async Task<List<Location>> GetLocations()
+        {
+            List<Location> places = new List<Location>();
+
+            var locationList = from locations in dbContext.Location
+                               select locations;
+            await Task.Run<List<Location>>(() =>
+            {
+                foreach (var location in locationList)
+                {
+                    places.Add(location);
+                }
+                return places;
+            });
+            return null;
+        }
+
     }
 }

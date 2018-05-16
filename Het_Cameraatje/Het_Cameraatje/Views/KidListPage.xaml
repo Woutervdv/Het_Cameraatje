@@ -5,21 +5,23 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Het_Cameraatje.Views.KidListPage">
 
-
-    <ListView ItemsSource="{Binding Kids}" Margin="20" >
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
-                        <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                        <Image HorizontalOptions="End">
-                            <Image.Source>
-                                <OnPlatform x:TypeArguments="ImageSource" iOS="KidPictureUrl" Android="KidPictureUrl" />
-                            </Image.Source>
-                        </Image>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Kids}" Margin="20" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                            <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                            <Image HorizontalOptions="End">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource" iOS="KidPictureUrl" Android="KidPictureUrl" />
+                                </Image.Source>
+                            </Image>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+    
 </ContentPage>

@@ -4,5 +4,24 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Het_Cameraatje.Views.CornerListPage">
-  
+    
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Locations}" Margin="20">
+            <ListView.ItemsTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                            <Label Text="{Binding Locations.LocationName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand"/>
+                            <Image HorizontalOptions="End">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource" iOS="LocationPictureUrl" Android="LocationPictureUrl"/>
+                                </Image.Source>
+                            </Image>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemsTemplate>
+        </ListView>
+    </ContentPage.Content>
+    
 </ContentPage>
