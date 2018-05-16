@@ -35,6 +35,7 @@ namespace Het_Cameraatje.ViewModels
                     p.Add("Kid", selectedKid);
                     p.Add("Environment", environment);
                     p.Add("User", user);
+                    p.Add("PictureUrl", pictureUrl);
                     NavigationService.NavigateAsync("CornerListPage", p);
                     selectedKid = null;
                 }
@@ -42,6 +43,7 @@ namespace Het_Cameraatje.ViewModels
         }
 
         private string environment;
+        private string pictureUrl;
         public User user { get; set; }
 
         public KidListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo)
@@ -61,6 +63,11 @@ namespace Het_Cameraatje.ViewModels
             {
                 user = (User)parameters["User"];
             }
+            if (parameters.ContainsKey("PictureUrl"))
+            {
+                pictureUrl = (User)parameters["PictureUrl"];
+            }
+
             repo = new CameraatjeRepository(dbContext, user);
             Kids = await repo.GetKids();
         }

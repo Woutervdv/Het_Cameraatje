@@ -117,6 +117,7 @@ namespace Het_Cameraatje.ViewModels
                     var p = new NavigationParameters();
                     p.Add("Environment", environment);
                     p.Add("User", user);
+                    p.Add("PictureUrl", downloadUrl);
                     await NavigationService.NavigateAsync("KidListPage", p);
                 }
                 catch (Exception ex)

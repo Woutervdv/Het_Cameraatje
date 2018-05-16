@@ -13,11 +13,7 @@
                     <ViewCell>
                         <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
                             <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Image HorizontalOptions="End">
-                                <Image.Source>
-                                    <OnPlatform x:TypeArguments="ImageSource" iOS="KidPictureUrl" Android="KidPictureUrl" />
-                                </Image.Source>
-                            </Image>
+                            <Image HorizontalOptions="End" Source="{Binding Kids.KidPictureUrl}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

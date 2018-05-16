@@ -1,5 +1,4 @@
 ﻿using Het_Cameraatje.Contracts;
-using Het_Cameraatje.Data;
 using Het_Cameraatje.Models;
 using Het_Cameraatje.Repositories;
 using Prism.Commands;
@@ -11,42 +10,38 @@ using System.Linq;
 
 namespace Het_Cameraatje.ViewModels
 {
-	public class CornerListPageViewModel : ViewModelBase
+	public class PartnerListPageViewModel : ViewModelBase
     {
         private ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
 
-        private IList<Location> locations;
-        public IList<Location> Locations
+        private List<Kid> partners;
+        public List<Kid> Partners
         {
-            get { return locations; }
-            set { SetProperty(ref locations, value); }
+            get { return partners; }
+            set { SetProperty(ref partners, value); }
         }
 
-        private Location selectedLocation;
-        public Location SelectedLocation
+        private Kid selectedPartner;
+        public Kid SelectedPartner
         {
-            get { return selectedLocation; }
+            get { return selectedPartner; }
             set
             {
-                if (SetProperty(ref selectedLocation, value) && selectedLocation != null)
+                if (SetProperty(ref selectedPartner, value) && selectedPartner != null)
                 {
-                    var p = new NavigationParameters();
-                    p.Add("Location", selectedLocation);
-                    p.Add("Environment", environment);
-                    p.Add("User", user);
-                    p.Add("PictureUrl", pictureUrl);
-                    NavigationService.NavigateAsync("PartnerListPage", p);
-                    selectedLocation = null;
+                    /* Save photo in db */ 
+                    /* Navigate to home */
                 }
             }
         }
 
-        private string environment;
-        private User user;
-        private string pictureUrl;
+        public string environment;
+        public User user;
+        public Kid kid;
+        public string pictureUrl;
 
-        public CornerListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo):base(navigationService)
+        public PartnerListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo):base(navigationService)
         {
             this.dbContext = dbContext;
             this.repo = repo;
@@ -62,12 +57,16 @@ namespace Het_Cameraatje.ViewModels
             {
                 user = (User)parameters["User"];
             }
+            if (parameters.ContainsKey("Kid"))
+            {
+                kid = (Kid)parameters["Kid"];
+            }
             if (parameters.ContainsKey("PictureUrl"))
             {
                 pictureUrl = (string)parameters["PictureUrl"];
             }
             repo = new CameraatjeRepository(dbContext, user);
-            Locations = await repo.GetLocations();
+            Partners = await repo.GetPartners();
         }
     }
 }
