@@ -4,6 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              NavigationPage.HasNavigationBar="False"
+             BackgroundImage="background.png"
              x:Class="Het_Cameraatje.Views.PartnerListPage">
 
     <ContentPage.Content>

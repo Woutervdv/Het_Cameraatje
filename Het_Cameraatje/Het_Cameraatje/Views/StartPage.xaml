@@ -4,11 +4,12 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Het_Cameraatje.Views.StartPage"
+             BackgroundImage="background.png"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Button x:Name="btnHome" Text="Home" Command="{Binding HomeCommand}"/>
-            <Button x:Name="btnSchool" Text="School" Command="{Binding SchoolCommand}"/> 
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="50">
+            <Button x:Name="btnHome" Command="{Binding HomeCommand}" Image="baseline_home_black_48.png" WidthRequest="140" HeightRequest="140"/>
+            <Button x:Name="btnSchool" Command="{Binding SchoolCommand}" Image="baseline_school_black_48.png" WidthRequest="140" HeightRequest="140"/> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

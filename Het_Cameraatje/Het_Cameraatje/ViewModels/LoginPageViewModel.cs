@@ -35,7 +35,14 @@ namespace Het_Cameraatje.ViewModels
         }
 
         public ICommand LoginCommand { get; private set; } 
-        public ICommand BackCommand { get; private set; }  
+        public ICommand BackCommand { get; private set; }
+
+        private string imageSource;
+        public string ImageSource
+        {
+            get { return imageSource; }
+            set { SetProperty(ref imageSource, value); }
+        }
 
         public LoginPageViewModel(INavigationService navigationService, IPageDialogService dialogService )
             : base(navigationService)
@@ -111,9 +118,13 @@ namespace Het_Cameraatje.ViewModels
             if (parameters.ContainsKey("Environment"))
             {
                 environment = (string)parameters["Environment"];
+
+                if (environment == "Home")
+                {
+                    ImageSource = "baseline_home_black_48.png";
+                }
+                else ImageSource = "baseline_school_black_48.png";
             } 
-        }
-
-
+        } 
     }
 }
