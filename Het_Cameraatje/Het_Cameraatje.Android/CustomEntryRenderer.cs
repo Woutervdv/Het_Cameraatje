@@ -23,7 +23,7 @@ namespace Het_Cameraatje.Droid
             {
                 /* Set BAckground of Entry */
                 var gradientDawable = new GradientDrawable();
-                gradientDawable.SetCornerRadius(60f);
+                gradientDawable.SetCornerRadius(100f);
                 gradientDawable.SetColor(Android.Graphics.Color.Argb(60, 255, 255, 255));
                 gradientDawable.SetStroke(2, Android.Graphics.Color.Black); 
                 Control.SetBackground(gradientDawable);
