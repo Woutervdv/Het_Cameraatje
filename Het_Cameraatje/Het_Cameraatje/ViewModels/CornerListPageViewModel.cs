@@ -31,11 +31,13 @@ namespace Het_Cameraatje.ViewModels
             {
                 if (SetProperty(ref selectedLocation, value) && selectedLocation != null)
                 {
-                    var p = new NavigationParameters();
-                    p.Add("Location", selectedLocation);
-                    p.Add("Environment", environment);
-                    p.Add("User", user);
-                    p.Add("PictureUrl", pictureUrl);
+                    var p = new NavigationParameters
+                    {
+                        { "Location", selectedLocation },
+                        { "Environment", environment },
+                        { "User", user },
+                        { "PictureUrl", pictureUrl }
+                    };
                     NavigationService.NavigateAsync("PartnerListPage", p);
                     selectedLocation = null;
                 }

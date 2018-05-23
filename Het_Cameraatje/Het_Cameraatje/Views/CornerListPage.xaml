@@ -8,7 +8,7 @@
     
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Locations}" Margin="20" SelectedItem="{Binding SelectedLocation, Mode=TwoWay}">
-            <ListView.ItemsTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
@@ -17,7 +17,7 @@
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemsTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
     

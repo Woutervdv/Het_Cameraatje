@@ -46,7 +46,7 @@ namespace Het_Cameraatje.ViewModels
         public ICommand CameraCommand { get; private set; }
         public ICommand ReturnCommand { get; private set; }
 
-         public  HomePageViewModel(INavigationService navigationService)
+         public  HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService)
             : base(navigationService)
         {
             Visible = false;

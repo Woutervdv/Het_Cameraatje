@@ -31,11 +31,13 @@ namespace Het_Cameraatje.ViewModels
             {
                 if (SetProperty(ref selectedKid, value) && selectedKid != null)
                 {
-                    var p = new NavigationParameters();
-                    p.Add("Kid", selectedKid);
-                    p.Add("Environment", environment);
-                    p.Add("User", user);
-                    p.Add("PictureUrl", pictureUrl);
+                    var p = new NavigationParameters
+                    {
+                        { "Kid", selectedKid },
+                        { "Environment", environment },
+                        { "User", user },
+                        { "PictureUrl", pictureUrl }
+                    };
                     NavigationService.NavigateAsync("CornerListPage", p);
                     selectedKid = null;
                 }
