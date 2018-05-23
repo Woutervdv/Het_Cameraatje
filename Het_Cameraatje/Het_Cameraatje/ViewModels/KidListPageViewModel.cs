@@ -65,7 +65,7 @@ namespace Het_Cameraatje.ViewModels
             }
             if (parameters.ContainsKey("PictureUrl"))
             {
-                pictureUrl = (User)parameters["PictureUrl"];
+                pictureUrl = (string)parameters["PictureUrl"];
             }
 
             repo = new CameraatjeRepository(dbContext, user);

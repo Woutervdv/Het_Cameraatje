@@ -13,5 +13,6 @@ namespace Het_Cameraatje.Contracts
         Task<List<Picture>> GetPicturesAsync();
         Task<List<Kid>> GetKids();
         Task<List<Location>> GetLocations();
+        Task<List<Kid>> GetPartners();
     }
 }

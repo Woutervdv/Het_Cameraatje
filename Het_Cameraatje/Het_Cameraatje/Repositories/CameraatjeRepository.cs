@@ -103,5 +103,9 @@ namespace Het_Cameraatje.Repositories
             return null;
         }
 
+        public Task<List<Kid>> GetPartners()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

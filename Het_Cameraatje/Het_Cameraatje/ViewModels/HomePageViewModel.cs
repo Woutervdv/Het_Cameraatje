@@ -21,9 +21,7 @@ namespace Het_Cameraatje.ViewModels
 {
 
 	public class HomePageViewModel : ViewModelBase
-    {
-        private IPageDialogService dialogService;
-        
+    {         
         private string environment;
 
         public User user { get; set; }
@@ -48,7 +46,7 @@ namespace Het_Cameraatje.ViewModels
         public ICommand CameraCommand { get; private set; }
         public ICommand ReturnCommand { get; private set; }
 
-         public  HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService)
+         public  HomePageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Visible = false;
@@ -59,9 +57,11 @@ namespace Het_Cameraatje.ViewModels
 
             AlbumCommand = new DelegateCommand(async () =>
             {
-                var p = new NavigationParameters();
-                p.Add("Environment", environment);
-                p.Add("User", user);
+                var p = new NavigationParameters
+                {
+                    { "Environment", environment },
+                    { "User", user }
+                };
                 await NavigationService.NavigateAsync("GalleryPage", p);
             });
 
@@ -114,10 +114,12 @@ namespace Het_Cameraatje.ViewModels
                     // await the task to wait until upload completes and get the download url
                     var downloadUrl = await task;
                     await dialogService.DisplayAlertAsync("Download Url", downloadUrl, "OK");
-                    var p = new NavigationParameters();
-                    p.Add("Environment", environment);
-                    p.Add("User", user);
-                    p.Add("PictureUrl", downloadUrl);
+                    var p = new NavigationParameters
+                    {
+                        { "Environment", environment },
+                        { "User", user },
+                        { "PictureUrl", downloadUrl }
+                    };
                     await NavigationService.NavigateAsync("KidListPage", p);
                 }
                 catch (Exception ex)
@@ -130,10 +132,7 @@ namespace Het_Cameraatje.ViewModels
             ReturnCommand = new DelegateCommand(() =>
             {
                 NavigationService.GoBackAsync();
-            });
-
-           
-           
+            }); 
         }
 
        

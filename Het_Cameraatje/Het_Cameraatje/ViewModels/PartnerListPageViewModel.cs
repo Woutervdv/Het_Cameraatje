@@ -15,8 +15,8 @@ namespace Het_Cameraatje.ViewModels
         private ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
 
-        private List<Kid> partners;
-        public List<Kid> Partners
+        private IList<Kid> partners;
+        public IList<Kid> Partners
         {
             get { return partners; }
             set { SetProperty(ref partners, value); }
