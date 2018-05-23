@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Het_Cameraatje.Contracts;
 using Prism;
 using Prism.Ioc;
 
@@ -30,6 +31,7 @@ namespace Het_Cameraatje.Droid
         public void RegisterTypes(IContainerRegistry container)
         {
             // Register any platform specific implementations
+            container.Register<IFileHelper, FileHelper>();
         }
     }
 }

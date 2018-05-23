@@ -36,7 +36,7 @@ namespace Het_Cameraatje
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
-            containerRegistry.RegisterInstance<ICameraatjeDbContext>(new CameraatjeDbContext("Data Source=tweede-cameraatje.database.windows.net;Initial Catalog=het_Cameraatje;Persist Security Info=True;User ID=student;Password=Eloict2018"));
+            containerRegistry.Register<ICameraatjeDbContext, CameraatjeDbContext>();
             containerRegistry.Register<ICameraatjeRepository, CameraatjeRepository>();
             containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.RegisterForNavigation<HomePage>();

@@ -13,7 +13,7 @@ namespace Het_Cameraatje.ViewModels
 {
 	public class CornerListPageViewModel : ViewModelBase
     {
-        private ICameraatjeDbContext dbContext;
+        ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
 
         private IList<Location> locations;
@@ -48,10 +48,11 @@ namespace Het_Cameraatje.ViewModels
         private User user;
         private string pictureUrl;
 
-        public CornerListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo):base(navigationService)
+        public CornerListPageViewModel(INavigationService navigationService,  ICameraatjeRepository repo, ICameraatjeDbContext dbContext):base(navigationService)
         {
-            this.dbContext = dbContext;
+            
             this.repo = repo;
+            this.dbContext = dbContext;
         }
 
         public async override void OnNavigatedTo(NavigationParameters parameters)
@@ -68,7 +69,7 @@ namespace Het_Cameraatje.ViewModels
             {
                 pictureUrl = (string)parameters["PictureUrl"];
             }
-            repo = new CameraatjeRepository(dbContext, user);
+            repo = new CameraatjeRepository(dbContext);
             Locations = await repo.GetLocations();
         }
     }

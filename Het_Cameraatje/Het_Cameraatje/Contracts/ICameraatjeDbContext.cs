@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Het_Cameraatje.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Het_Cameraatje.Models;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Het_Cameraatje.Contracts
 {
@@ -16,9 +16,6 @@ namespace Het_Cameraatje.Contracts
         DbSet<Picture> Picture { get; set; }
         DbSet<Pictures> Pictures { get; set; }
         DbSet<Teacher> Teacher { get; set; }
-
-
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
-
     }
 }

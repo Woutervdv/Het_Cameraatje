@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Het_Cameraatje.Contracts;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
@@ -16,8 +17,9 @@ namespace Het_Cameraatje.ViewModels
         public ICommand HomeCommand { get; set; } 
         public ICommand SchoolCommand { get; set; } 
 
-        public StartPageViewModel(INavigationService navigationService): base(navigationService)
+        public StartPageViewModel(INavigationService navigationService, IFileHelper fileHelper , ICameraatjeRepository cameraatjeRepository ): base(navigationService)
         {
+            
             Title = "Start";
              
             this.navigationService = navigationService;

@@ -41,7 +41,7 @@ namespace Het_Cameraatje.ViewModels
         public Kid kid;
         public string pictureUrl;
 
-        public PartnerListPageViewModel(INavigationService navigationService, ICameraatjeDbContext dbContext, ICameraatjeRepository repo):base(navigationService)
+        public PartnerListPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext):base(navigationService)
         {
             this.dbContext = dbContext;
             this.repo = repo;
@@ -65,7 +65,7 @@ namespace Het_Cameraatje.ViewModels
             {
                 pictureUrl = (string)parameters["PictureUrl"];
             }
-            repo = new CameraatjeRepository(dbContext, user);
+            repo = new CameraatjeRepository(dbContext);
             Partners = await repo.GetPartners();
         }
     }

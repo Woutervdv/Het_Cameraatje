@@ -7,31 +7,31 @@ using Het_Cameraatje.Contracts;
 using Het_Cameraatje.Models;
 using Microsoft.EntityFrameworkCore;
 using Firebase.Auth;
+using Het_Cameraatje.Data;
 /*
- * this class is created by Wouter Vandevorst on 4/04/2018
- */
+* this class is created by Wouter Vandevorst on 4/04/2018
+*/
 namespace Het_Cameraatje.Repositories
 {
     
     public class CameraatjeRepository : ICameraatjeRepository
     {
+        private ICameraatjeDbContext dbContext;
         private List<Picture> photos = new List<Picture>();
         private List<Kid> child = new List<Kid>();
-        private ICameraatjeDbContext dbContext;
-        private User firebaseAuth;
 
-        public CameraatjeRepository( ICameraatjeDbContext dbContext, User firebaseAuth)
+
+        public CameraatjeRepository(ICameraatjeDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.firebaseAuth = firebaseAuth;
         }
 
+       
         
-
         public async Task<List<Picture>> GetPicturesAsync()
         {
             //get current user
-            var user = firebaseAuth.Auth.User.Email;
+            var user = "test@student.be";
             //get Kid that is linked to this account
             var ID = from kid in dbContext.Kid
                      where kid.Email == user
@@ -55,7 +55,7 @@ namespace Het_Cameraatje.Repositories
 
             }
 
-            
+
             await Task.Run<List<Picture>>(() =>
              {
                  //maak lijst van geselecteerde foto's en return
@@ -70,20 +70,7 @@ namespace Het_Cameraatje.Repositories
 
         public async Task<List<Kid>> GetKids()
         {
-            var kids = from children in dbContext.Kid
-                       select children;
-
-            await Task.Run<List<Kid>>(() =>
-            {
-                foreach (var kid in kids)
-                {
-                    child.Add(kid);
-                }
-                return child;
-            });
-
-            //als er iets fout loopt
-            return null;
+            return await dbContext.Kid.ToListAsync();
         }
 
         public async Task<List<Location>> GetLocations()
@@ -107,5 +94,7 @@ namespace Het_Cameraatje.Repositories
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }
