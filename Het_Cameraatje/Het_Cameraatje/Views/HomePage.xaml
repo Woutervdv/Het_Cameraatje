@@ -9,8 +9,11 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <Button Text="Log Out" HorizontalOptions="Start"
-                    Command="{Binding LogOutCommand}"/>
+            <Button 
+                Text="Log Out" 
+                HorizontalOptions="Start"
+                FontSize="Large"
+                Command="{Binding LogOutCommand}"/>
 
             <Image Source="https://next.bncollege.com/wp-content/uploads/2016/10/Class-of-2020.jpg" />
             <Grid VerticalOptions="Center" HorizontalOptions="Center">
