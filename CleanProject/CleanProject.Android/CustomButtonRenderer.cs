@@ -1,7 +1,8 @@
 ﻿using Android.Content;
-using Android.Graphics.Drawables; 
-using Android.Views; 
+using Android.Graphics.Drawables;
+using Android.Views;
 using CleanProject.Droid;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -26,7 +27,7 @@ namespace CleanProject.Droid
                 gradientDawable.SetColor(Android.Graphics.Color.Rgb(85, 85, 85));
                 Control.SetBackground(gradientDawable);
                 /* Align Entry Text Center */
-                Control.Gravity = GravityFlags.CenterHorizontal;
+                Control.Gravity = GravityFlags.Center; 
             }
         }
     }

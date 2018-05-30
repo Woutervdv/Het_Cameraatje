@@ -10,12 +10,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace CleanProject.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class StartPageViewModel : ViewModelBase
     {
         public ICommand StartCommand { get; set; }
+        private ImageSource logoSource;
+        public ImageSource LogoSource
+        {
+            get { return logoSource; }
+            set { SetProperty(ref logoSource, value); }
+        }
 
         private ICameraatjeRepository cameraatjeRepository;
         private Class klas;
@@ -25,13 +32,14 @@ namespace CleanProject.ViewModels
         private Pictures pictures;
         private Teacher teacher;
 
-        public MainPageViewModel(INavigationService navigationService , ICameraatjeRepository cameraatjeRepository) : base (navigationService)
+        public StartPageViewModel(INavigationService navigationService , ICameraatjeRepository cameraatjeRepository) : base (navigationService)
         { 
             this.cameraatjeRepository = cameraatjeRepository;
             MakeDummyData();
             //GetData();
 
-            StartCommand = new DelegateCommand(() => NavigationService.NavigateAsync("StartPage"));
+            LogoSource = ImageSource.FromResource("CleanProject.Images.logo.png");
+            StartCommand = new DelegateCommand(() => NavigationService.NavigateAsync("SelectEnvironmentPage"));
         }
         private IList<Class> items;
         public IList<Class> Items

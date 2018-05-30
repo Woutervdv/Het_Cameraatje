@@ -4,8 +4,10 @@
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
              x:Class="CleanProject.App">
 	<Application.Resources>
-
-		<!-- Application resource dictionary -->
-
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="#50b4c8"/>
+            </Style>
+        </ResourceDictionary> 
 	</Application.Resources>
 </prism:PrismApplication>

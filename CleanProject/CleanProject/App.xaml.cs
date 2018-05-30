@@ -27,15 +27,18 @@ namespace CleanProject
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/StartPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.Register<ICameraatjeDbContext, CameraatjeDbContext>();
             containerRegistry.Register<ICameraatjeRepository, CameraatjeRepository>();
+            containerRegistry.RegisterForNavigation<SelectEnvironmentPage>();
+            containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<LoginPage>();
         }
     }
 }

@@ -7,9 +7,9 @@ using Xamarin.Forms;
 
 namespace CleanProject.Views
 {
-	public partial class MainPage : ContentPage
+	public partial class StartPage : ContentPage
 	{
-		public MainPage ()
+		public StartPage()
 		{
 			InitializeComponent ();
 		}
