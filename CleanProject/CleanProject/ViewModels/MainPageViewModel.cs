@@ -9,11 +9,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace CleanProject.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public ICommand StartCommand { get; set; }
+
         private ICameraatjeRepository cameraatjeRepository;
         private Class klas;
         private Kid kid;
@@ -21,14 +24,14 @@ namespace CleanProject.ViewModels
         private Picture picture;
         private Pictures pictures;
         private Teacher teacher;
-        public MainPageViewModel(INavigationService navigationService , ICameraatjeRepository cameraatjeRepository) 
-            : base (navigationService)
-        {
-            Title = "Main Page";
+
+        public MainPageViewModel(INavigationService navigationService , ICameraatjeRepository cameraatjeRepository) : base (navigationService)
+        { 
             this.cameraatjeRepository = cameraatjeRepository;
             MakeDummyData();
-            GetData();
+            //GetData();
 
+            StartCommand = new DelegateCommand(() => NavigationService.NavigateAsync("StartPage"));
         }
         private IList<Class> items;
         public IList<Class> Items
@@ -38,10 +41,10 @@ namespace CleanProject.ViewModels
         }
 
 
-        public async void GetData()
-        {
-            Items = await cameraatjeRepository.GetClassesAsync();
-        }
+        //public async void GetData()
+        //{
+        //    Items = await cameraatjeRepository.GetClassesAsync();
+        //}
 
         public async void MakeDummyData()
         {
@@ -91,9 +94,7 @@ namespace CleanProject.ViewModels
             teacher.Email = "test@teacher.be";
             teacher.TeacherFirstName = "Rudy";
             teacher.TeacherLastName = "Roox";
-            await cameraatjeRepository.SaveTeacher(teacher);
-
-
+            await cameraatjeRepository.SaveTeacher(teacher); 
         }
     }
 }
