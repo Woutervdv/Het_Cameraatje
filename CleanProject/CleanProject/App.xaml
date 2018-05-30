@@ -6,7 +6,7 @@
 	<Application.Resources>
         <ResourceDictionary>
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="#50b4c8"/>
+                <Setter Property="BackgroundColor" Value="#50b4c8"/> 
             </Style>
         </ResourceDictionary> 
 	</Application.Resources>

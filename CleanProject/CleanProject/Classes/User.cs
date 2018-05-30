@@ -2,7 +2,7 @@
 
 namespace CleanProject.Classes
 {
-    class User
+    public class User
     {
         public FirebaseAuthLink Auth { get; set; }
         public string Environment { get; set; }

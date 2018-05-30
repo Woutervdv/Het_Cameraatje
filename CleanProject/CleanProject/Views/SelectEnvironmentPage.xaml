@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             NavigationPage.HasNavigationBar="False" 
              x:Class="CleanProject.Views.SelectEnvironmentPage">
     <ContentPage.Content>
         <Grid>
@@ -21,8 +22,7 @@
                 <Button Text="HOME"
                         TextColor="White"
                         Command="{Binding HomeCommand}"
-                        FontSize="60"
-                        HeightRequest="120" 
+                        FontSize="40" 
                         WidthRequest="300" />
             </StackLayout>
             <StackLayout HorizontalOptions="Center"
@@ -32,8 +32,7 @@
                 <Button Text="SCHOOL"
                         TextColor="White"
                         Command="{Binding SchoolCommand}"
-                        FontSize="60"
-                        HeightRequest="120" 
+                        FontSize="40" 
                         WidthRequest="300" />
             </StackLayout>
         </Grid>
