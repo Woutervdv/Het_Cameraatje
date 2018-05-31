@@ -39,6 +39,8 @@ namespace CleanProject
             containerRegistry.RegisterForNavigation<SelectEnvironmentPage>();
             containerRegistry.RegisterForNavigation<HomePage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
+            containerRegistry.RegisterForNavigation<KidListPage>();
+            containerRegistry.RegisterForNavigation<CornerListPage>();
         }
     }
 }

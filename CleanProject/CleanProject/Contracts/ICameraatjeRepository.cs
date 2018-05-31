@@ -17,5 +17,10 @@ namespace CleanProject.Contracts
         Task<int> SavePictures(Pictures pictures);
         Task<int> SaveTeacher(Teacher teacher);
         Task<List<Class>> GetClassesAsync();
+
+        Task<List<Picture>> GetPicturesAsync();
+        Task<List<Kid>> GetKids();
+        Task<List<Location>> GetLocations();
+        Task<List<Kid>> GetPartners();
     }
 }
