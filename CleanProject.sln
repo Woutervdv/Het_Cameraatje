@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanProject", "CleanProject\CleanProject\CleanProject.csproj", "{F4D3B8F1-3F35-4FC5-AFE0-CFBA9553DDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanProject", "CleanProject\CleanProject\CleanProject.csproj", "{F4D3B8F1-3F35-4FC5-AFE0-CFBA9553DDDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanProject.Android", "CleanProject\CleanProject.Android\CleanProject.Android.csproj", "{AC9C2E43-352B-47DF-837D-017A65FCC338}"
 EndProject
