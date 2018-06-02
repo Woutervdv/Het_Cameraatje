@@ -11,8 +11,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
-                            <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Image HorizontalOptions="End" Source="{Binding Kids.KidPictureUrl}"/>
+                            <Label Text="{Binding KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                            <Image HorizontalOptions="End" Source="{Binding KidPictureUrl}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
