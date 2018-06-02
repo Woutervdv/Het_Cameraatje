@@ -14,6 +14,7 @@ namespace CleanProject.ViewModels
 	public class HomePageViewModel : ViewModelBase
 	{ 
         private User user;
+        private Photo photo;
         private string enviroment;
         private DateTime Now;
         private ImageSource source;
@@ -60,6 +61,8 @@ namespace CleanProject.ViewModels
                     return stream;
                 });
 
+                photo = new Photo();
+
                 try
                 {
                     // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
@@ -78,7 +81,11 @@ namespace CleanProject.ViewModels
 
                     // await the task to wait until upload completes and get the download url
                     var downloadUrl = await task;
+
+
                     await dialogService.DisplayAlertAsync("Download Url", downloadUrl, "OK");
+
+                    photo.Url = downloadUrl;
                 }
                 catch (Exception ex)
                 {
