@@ -5,5 +5,30 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              NavigationPage.HasNavigationBar="False" 
              x:Class="CleanProject.Views.HomePage">
-  
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Button Text="Log Out" HorizontalOptions="Start"
+                    Command="{Binding LogOutCommand}"/>
+
+            <Image Source="https://next.bncollege.com/wp-content/uploads/2016/10/Class-of-2020.jpg" />
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Button Grid.Column="0" Text="Foto" 
+                        Command="{Binding CameraCommand}"
+                    />
+
+                <Button Grid.Column="1" Text="Album" 
+                        Command="{Binding AlbumCommand}"
+                    />
+
+            </Grid>
+
+            <Button Text="return" VerticalOptions="End"
+                    HorizontalOptions="Center"
+           
+                    Command="{Binding ReturnCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
 </ContentPage>

@@ -70,7 +70,7 @@ namespace CleanProject.ViewModels
                 pictureUrl = (string)parameters["PictureUrl"];
             }
 
-            repo = new CameraatjeRepository(dbContext);
+            
             Kids = await repo.GetKids();
         }
     }
