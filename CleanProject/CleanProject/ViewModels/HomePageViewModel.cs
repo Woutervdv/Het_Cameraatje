@@ -21,15 +21,15 @@ namespace CleanProject.ViewModels
         {
             get { return source; }
             set { SetProperty(ref source, value); }
-        }
+        } 
 
+        public ICommand LogOutCommand { get; private set; }
+        public ICommand AlbumCommand { get; private set; }
+        public ICommand CameraCommand { get; private set; } 
 
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService)
         {
-            LogOutCommand = new DelegateCommand(() =>
-            {
-                NavigationService.NavigateAsync("StartPage");
-            });
+            LogOutCommand = new DelegateCommand(() => NavigationService.NavigateAsync("StartPage"));
 
             CameraCommand = new DelegateCommand(async () =>
             {
@@ -62,8 +62,6 @@ namespace CleanProject.ViewModels
 
                 try
                 {
-
-
                     // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
                     var task = new FirebaseStorage(
                         "gs://het-cameraatje.appspot.com/",
@@ -88,15 +86,7 @@ namespace CleanProject.ViewModels
                 }
             });
         }
-
-        public ICommand LogOutCommand { get; private set; }
-        public ICommand AlbumCommand { get; private set; }
-        public ICommand CameraCommand { get; private set; }
-
-
-
-
-
+         
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
