@@ -31,7 +31,7 @@ namespace CleanProject.ViewModels
             {
                 if (SetProperty(ref selectedLocation, value) && selectedLocation != null)
                 {
-                    var p = new NavigationParameters
+                    var p = new NavigationParameters 
                     {
                         { "Location", selectedLocation },
                         { "Environment", environment },

@@ -28,7 +28,8 @@
                          Grid.Row="1">
                 <Entry Placeholder="Email"
                        Text="{Binding Email}"
-                       WidthRequest="300"/>
+                       WidthRequest="300"
+                       Keyboard="Email"/>
                 <Entry Placeholder="Password"
                        Text="{Binding Pass}"
                        IsPassword="True"/>
