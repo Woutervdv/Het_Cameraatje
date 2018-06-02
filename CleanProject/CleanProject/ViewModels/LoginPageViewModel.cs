@@ -4,8 +4,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Xamarin.Forms; 
 using Firebase.Auth;
-using Prism.Services; 
-using System.Threading.Tasks;
+using Prism.Services;  
 
 namespace CleanProject.ViewModels
 {
@@ -58,7 +57,7 @@ namespace CleanProject.ViewModels
 
                 await NavigationService.NavigateAsync("HomePage", new NavigationParameters
                 {
-                    {"user", new Classes.User(a, env) }
+                    {"User", new Classes.User(a, env) }
                 });
             }
             catch (Exception)

@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic; 
+﻿using CleanProject.Models;
+using System.Collections.Generic; 
 
 namespace CleanProject.Classes
 {
     public class Photo
     {
         public string Url { get; set; }
-        public int LocationId { get; set; }
-        public IList<int> KidIdList { get; }
-        public int AuthorId { get; set; }
+        public Location Corner { get; set; }
+        public Kid Partner { get; set; }
+        public User User { get; }
 
-        public Photo()
+        public Photo(User user)
         {
-            
-        }
-
-        public void TaggKid(int KidId) => KidIdList.Add(KidId);
+            User = user;
+        }  
     }
 }

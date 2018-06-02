@@ -1,18 +1,15 @@
 ﻿using CleanProject.Classes;
 using CleanProject.Contracts;
-using CleanProject.Models;
-using CleanProject.Repositories;
-using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CleanProject.Models; 
+using Prism.Navigation; 
+using System.Collections.Generic; 
 
 namespace CleanProject.ViewModels
 {
     public class CornerListPageViewModel : ViewModelBase
     {
+        private Photo photo;
+
         ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
 
@@ -29,17 +26,15 @@ namespace CleanProject.ViewModels
             get { return selectedLocation; }
             set
             {
+                photo.Corner = selectedLocation;
+
+                selectedLocation = null;
+
                 if (SetProperty(ref selectedLocation, value) && selectedLocation != null)
-                {
-                    var p = new NavigationParameters 
-                    {
-                        { "Location", selectedLocation },
-                        { "Environment", environment },
-                        { "User", user },
-                        { "PictureUrl", pictureUrl }
-                    };
-                    NavigationService.NavigateAsync("PartnerListPage", p);
-                    selectedLocation = null;
+                { 
+                    NavigationService.NavigateAsync("PartnerListPage", new NavigationParameters() {
+                        {"Photo", photo }
+                    });
                 }
             }
         }
@@ -57,17 +52,9 @@ namespace CleanProject.ViewModels
 
         public async override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("Environment"))
+            if (parameters.ContainsKey("Photo"))
             {
-                environment = (string)parameters["Environment"];
-            }
-            if (parameters.ContainsKey("User"))
-            {
-                user = (User)parameters["User"];
-            }
-            if (parameters.ContainsKey("PictureUrl"))
-            {
-                pictureUrl = (string)parameters["PictureUrl"];
+                photo = (Photo)parameters["Photo"];
             }
             
             Locations = await repo.GetLocations();

@@ -1,18 +1,15 @@
 ﻿using CleanProject.Classes;
 using CleanProject.Contracts;
-using CleanProject.Models;
-using CleanProject.Repositories;
-using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CleanProject.Models; 
+using Prism.Navigation; 
+using System.Collections.Generic; 
 
 namespace CleanProject.ViewModels
 {
     public class KidListPageViewModel : ViewModelBase
     {
+        private Photo photo;
+
         private ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
 
@@ -31,15 +28,13 @@ namespace CleanProject.ViewModels
             {
                 if (SetProperty(ref selectedKid, value) && selectedKid != null)
                 {
-                    var p = new NavigationParameters
-                    {
-                        { "Kid", selectedKid },
-                        { "Environment", environment },
-                        { "User", user },
-                        { "PictureUrl", pictureUrl }
-                    };
-                    NavigationService.NavigateAsync("CornerListPage", p);
+                    photo.Partner= selectedKid;
+
                     selectedKid = null;
+
+                    NavigationService.NavigateAsync("CornerListPage", new NavigationParameters(){
+                        {"Photo", photo }
+                    });
                 }
             }
         }
@@ -57,20 +52,11 @@ namespace CleanProject.ViewModels
 
         public async override void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("Environment"))
+            if (parameters.ContainsKey("Photo"))
             {
-                environment = (string)parameters["Environment"];
+                photo = (Photo)parameters["Photo"];
             }
-            if (parameters.ContainsKey("User"))
-            {
-                user = (User)parameters["User"];
-            }
-            if (parameters.ContainsKey("PictureUrl"))
-            {
-                pictureUrl = (string)parameters["PictureUrl"];
-            }
-
-            
+             
             Kids = await repo.GetKids();
         }
     }

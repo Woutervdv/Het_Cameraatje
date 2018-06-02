@@ -14,9 +14,7 @@ namespace CleanProject.ViewModels
 	public class HomePageViewModel : ViewModelBase
 	{ 
         private User user;
-        private Photo photo;
-        private string enviroment;
-        private DateTime Now;
+        private Photo photo; 
         private ImageSource source;
         public ImageSource Source
         {
@@ -33,9 +31,7 @@ namespace CleanProject.ViewModels
             LogOutCommand = new DelegateCommand(() => NavigationService.NavigateAsync("StartPage"));
 
             CameraCommand = new DelegateCommand(async () =>
-            {
-                Now = DateTime.Now;
-
+            { 
                 await CrossMedia.Current.Initialize();
 
                 if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -61,8 +57,11 @@ namespace CleanProject.ViewModels
                     return stream;
                 });
 
-                photo = new Photo();
+                string fileName = Convert.ToString(DateTime.Now);
+                fileName = fileName.Replace(" ", string.Empty).Replace("/", string.Empty).Replace(":", string.Empty); 
 
+                photo = new Photo(user);
+                 
                 try
                 {
                     // Constructr FirebaseStorage, path to where you want to upload the file and Put it there
@@ -73,7 +72,7 @@ namespace CleanProject.ViewModels
                             AuthTokenAsyncFactory = () => Task.FromResult(user.Auth.FirebaseToken),
                         })
                         .Child("photos")
-                        .Child(Convert.ToString(Now))
+                        .Child(fileName)
                         .PutAsync(file.GetStream());
 
                     // Track progress of the upload
@@ -86,6 +85,11 @@ namespace CleanProject.ViewModels
                     await dialogService.DisplayAlertAsync("Download Url", downloadUrl, "OK");
 
                     photo.Url = downloadUrl;
+
+                    await navigationService.NavigateAsync("KidListPage", new NavigationParameters()
+                    {
+                        { "Photo", photo }
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -98,9 +102,9 @@ namespace CleanProject.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            if (parameters.ContainsKey("user"))
+            if (parameters.ContainsKey("User"))
             {
-                user = (User)parameters["user"];
+                user = (User)parameters["User"];
             } 
         }
     }

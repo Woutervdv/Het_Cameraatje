@@ -33,13 +33,17 @@ namespace CleanProject
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<StartPage>();
+
             containerRegistry.Register<ICameraatjeDbContext, CameraatjeDbContext>();
             containerRegistry.Register<ICameraatjeRepository, CameraatjeRepository>();
+
+            containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.RegisterForNavigation<SelectEnvironmentPage>();
             containerRegistry.RegisterForNavigation<HomePage>();
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<AlbumPage>();
+            containerRegistry.RegisterForNavigation<CornerListPage>();
+            containerRegistry.RegisterForNavigation<KidListPage>(); 
         }
     }
 }
