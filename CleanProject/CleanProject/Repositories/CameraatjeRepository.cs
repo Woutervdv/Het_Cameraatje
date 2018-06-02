@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CleanProject.Classes;
 
 namespace CleanProject.Repositories
 {
@@ -53,7 +54,7 @@ namespace CleanProject.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<List<Picture>> GetPicturesAsync()
+        public async Task<List<Picture>> GetPicturesAsync(User fbuser)
         {
             //get current user
             var user = "test@student.be";

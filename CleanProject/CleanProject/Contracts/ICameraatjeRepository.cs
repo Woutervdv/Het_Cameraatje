@@ -1,4 +1,5 @@
-﻿using CleanProject.Models;
+﻿using CleanProject.Classes;
+using CleanProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,7 @@ namespace CleanProject.Contracts
         Task<int> SaveTeacher(Teacher teacher);
 
         Task<List<Class>> GetClassesAsync();
-        Task<List<Picture>> GetPicturesAsync();
+        Task<List<Picture>> GetPicturesAsync(User user);
         Task<List<Kid>> GetKids();
         Task<List<Location>> GetLocations();
         Task<List<Kid>> GetPartners();
