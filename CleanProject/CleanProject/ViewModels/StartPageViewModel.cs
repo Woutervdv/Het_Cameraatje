@@ -16,14 +16,6 @@ namespace CleanProject.ViewModels
 {
     public class StartPageViewModel : ViewModelBase
     {
-        public ICommand StartCommand { get; set; }
-        private ImageSource logoSource;
-        public ImageSource LogoSource
-        {
-            get { return logoSource; }
-            set { SetProperty(ref logoSource, value); }
-        }
-
         private ICameraatjeRepository cameraatjeRepository;
         private Class klas;
         private Kid kid;
@@ -32,27 +24,25 @@ namespace CleanProject.ViewModels
         private Pictures pictures;
         private Teacher teacher;
 
+        private ImageSource logoSource;
+        public ImageSource LogoSource
+        {
+            get { return logoSource; }
+            set { SetProperty(ref logoSource, value); }
+        }
+
+        public ICommand StartCommand { get; set; }
+
         public StartPageViewModel(INavigationService navigationService , ICameraatjeRepository cameraatjeRepository) : base (navigationService)
         { 
             this.cameraatjeRepository = cameraatjeRepository;
-            MakeDummyData();
-            //GetData();
+
+            // MakeDummyData(); 
 
             LogoSource = ImageSource.FromResource("CleanProject.Images.logo.png");
+
             StartCommand = new DelegateCommand(() => NavigationService.NavigateAsync("SelectEnvironmentPage"));
-        }
-        private IList<Class> items;
-        public IList<Class> Items
-        {
-            set { SetProperty(ref items, value); }
-            get { return items; }
-        }
-
-
-        //public async void GetData()
-        //{
-        //    Items = await cameraatjeRepository.GetClassesAsync();
-        //}
+        } 
 
         public async void MakeDummyData()
         {
