@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "442741801945",
+    "firebase_url": "https://het-cameraatje.firebaseio.com",
+    "project_id": "het-cameraatje",
+    "storage_bucket": "het-cameraatje.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442741801945:android:a0e9e7ce271b8044",
+        "android_client_info": {
+          "package_name": "com.het_Cameraatje.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442741801945-4l3stq3ktgp91bivpaacrpmppgvlardd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.het_Cameraatje.android",
+            "certificate_hash": "5821421801875adb406b0313a5c5124050e39341"
+          }
+        },
+        {
+          "client_id": "442741801945-mir47icfugs1c431vvtruibav2siq0jc.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "442741801945-mir47icfugs1c431vvtruibav2siq0jc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ8MiO5Mg2qtNt-Htw_jKSdqbZj8VCQUc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442741801945-mir47icfugs1c431vvtruibav2siq0jc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
