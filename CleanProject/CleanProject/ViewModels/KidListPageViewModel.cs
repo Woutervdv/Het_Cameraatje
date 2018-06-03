@@ -37,11 +37,7 @@ namespace CleanProject.ViewModels
                     });
                 }
             }
-        }
-
-        private string environment;
-        private string pictureUrl;
-        public User user { get; set; }
+        }  
 
         public KidListPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext)
           : base(navigationService)

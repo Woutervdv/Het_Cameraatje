@@ -7,11 +7,13 @@
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Kids}" Margin="20"  SelectedItem="{Binding SelectedKid, Mode=TwoWay}">
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate> 
                     <ViewCell>
-                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
-                            <Label Text="{Binding Kids.KidFirstName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Image HorizontalOptions="End" Source="{Binding Kids.KidPictureUrl}"/>
+                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal"> 
+                            <Image HorizontalOptions="CenterAndExpand" 
+                                   Source="{Binding KidPictureUrl}"
+                                   WidthRequest="200"
+                                   HeightRequest="200"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

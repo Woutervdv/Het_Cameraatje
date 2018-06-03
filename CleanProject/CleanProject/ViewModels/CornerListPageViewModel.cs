@@ -37,15 +37,10 @@ namespace CleanProject.ViewModels
                     });
                 }
             }
-        }
-
-        private string environment;
-        private User user;
-        private string pictureUrl;
+        } 
 
         public CornerListPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext) : base(navigationService)
-        {
-
+        { 
             this.repo = repo;
             this.dbContext = dbContext;
         }
