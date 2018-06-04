@@ -6,7 +6,7 @@
              x:Class="CleanProject.Views.AlbumPage">
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Picture}" Margin="20" SelectedItem="{Binding SelectedKid, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Picture}" Margin="20" SelectedItem="{Binding SelectedPicture, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

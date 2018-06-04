@@ -27,6 +27,25 @@ namespace CleanProject.ViewModels
         }
 
 
+
+        private Picture selectedPicture;
+        public Picture SelectedPicture
+        {
+            get { return selectedPicture; }
+            set
+            {
+                if (SetProperty(ref selectedPicture, value) && selectedPicture != null)
+                {
+                    NavigationService.NavigateAsync("DetailsPhotoPage", new NavigationParameters(){
+                        {"Picture", selectedPicture }
+                    });
+
+                }
+            }
+        }
+
+
+
         public async override void OnNavigatedTo(NavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);

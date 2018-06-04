@@ -43,7 +43,8 @@ namespace CleanProject
             containerRegistry.RegisterForNavigation<LoginPage>();
             containerRegistry.RegisterForNavigation<AlbumPage>();
             containerRegistry.RegisterForNavigation<CornerListPage>();
-            containerRegistry.RegisterForNavigation<KidListPage>(); 
+            containerRegistry.RegisterForNavigation<KidListPage>();
+            containerRegistry.RegisterForNavigation<DetailsPhotoPage>();
         }
     }
 }
