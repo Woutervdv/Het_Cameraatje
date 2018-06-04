@@ -12,6 +12,8 @@ namespace CleanProject.ViewModels
 
         ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
+        private Pictures pictures;
+        private Picture picture;
 
         private IList<Location> locations;
         public IList<Location> Locations
@@ -26,19 +28,41 @@ namespace CleanProject.ViewModels
             get { return selectedLocation; }
             set
             {
-                photo.Corner = selectedLocation;
-
-                selectedLocation = null;
-
+                
+                
                 if (SetProperty(ref selectedLocation, value) && selectedLocation != null)
-                { 
-                    NavigationService.NavigateAsync("PartnerListPage", new NavigationParameters() {
-                        {"Photo", photo }
+                {
+                    photo.Corner = selectedLocation;
+
+                    selectedLocation = null;
+                    CreatePictureObjects();
+
+
+                    NavigationService.NavigateAsync("HomePage", new NavigationParameters
+                    {
+                        {"User" , photo.User }
                     });
                 }
             }
-        } 
+        }
+        public async void CreatePictureObjects()
+        {
+            picture = new Picture
+            {
+                PictureUrl = photo.Url,
+                AuthorID = photo.Partner.KidID,
+                LocationID = photo.Corner.LocationID
+            };
+            await repo.SavePicture(picture);
 
+            pictures = new Pictures
+            {
+                PictureID = picture.PictureID,
+                KidID = photo.Partner.KidID
+            };
+
+            await repo.SavePictures(pictures);
+        }
         public CornerListPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext) : base(navigationService)
         { 
             this.repo = repo;

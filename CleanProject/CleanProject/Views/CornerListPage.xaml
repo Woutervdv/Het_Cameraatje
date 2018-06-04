@@ -5,12 +5,15 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="CleanProject.Views.CornerListPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Locations}" Margin="20"  SelectedItem="{Binding selectedLocation, Mode=TwoWay}">
+        <ListView ItemsSource="{Binding Locations}" Margin="20"  SelectedItem="{Binding SelectedLocation, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
-                            <Label Text="{Binding LocationName}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                            <Image HorizontalOptions="CenterAndExpand" 
+                                   Source="{Binding LocationUrl}"
+                                   WidthRequest="200"
+                                   HeightRequest="200"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

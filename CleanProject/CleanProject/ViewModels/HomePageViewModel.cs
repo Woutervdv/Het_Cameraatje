@@ -20,7 +20,13 @@ namespace CleanProject.ViewModels
         {
             get { return source; }
             set { SetProperty(ref source, value); }
-        } 
+        }
+        private string check;
+        public string  Check
+        {
+            get { return check; }
+            set { SetProperty(ref check, value); }
+        }
 
         public ICommand LogOutCommand { get; private set; }
         public ICommand AlbumCommand { get; private set; }
@@ -28,8 +34,12 @@ namespace CleanProject.ViewModels
 
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService) : base(navigationService)
         {
+            Check = "true";
             LogOutCommand = new DelegateCommand(() => NavigationService.NavigateAsync("StartPage"));
+            AlbumCommand = new DelegateCommand(() => navigationService.NavigateAsync("AlbumPage", new NavigationParameters(){
+                        {"User", user }
 
+            }));
             CameraCommand = new DelegateCommand(async () =>
             { 
                 await CrossMedia.Current.Initialize();
@@ -105,7 +115,17 @@ namespace CleanProject.ViewModels
             if (parameters.ContainsKey("User"))
             {
                 user = (User)parameters["User"];
-            } 
+            }
+
+
+            if (user.Environment == "school")
+            {
+                Check = "False";
+            }
+            else
+            {
+                Check = "True";
+            }
         }
     }
 }

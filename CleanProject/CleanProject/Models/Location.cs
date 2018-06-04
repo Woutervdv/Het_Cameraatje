@@ -15,5 +15,7 @@ namespace CleanProject.Models
         public string LocationName { get; set; }
 
         public string LocationDescription { get; set; }
+
+        public string LocationUrl { get; set; }
     }
 }

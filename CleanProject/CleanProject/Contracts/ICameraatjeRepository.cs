@@ -21,6 +21,7 @@ namespace CleanProject.Contracts
         Task<List<Picture>> GetPicturesAsync(User user);
         Task<List<Kid>> GetKids();
         Task<List<Location>> GetLocations();
-        Task<List<Kid>> GetPartners();
+        
+        
     }
 }

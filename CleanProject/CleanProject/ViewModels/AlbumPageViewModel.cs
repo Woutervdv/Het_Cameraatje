@@ -1,12 +1,42 @@
-﻿using Prism.Mvvm; 
+﻿using Prism.Mvvm;
+using CleanProject.Classes;
+using Prism.Navigation;
+using CleanProject.Contracts;
+using System.Collections.Generic;
+using CleanProject.Models;
 
 namespace CleanProject.ViewModels
 {
-	public class AlbumPageViewModel : BindableBase
+	public class AlbumPageViewModel : ViewModelBase
 	{
-        public AlbumPageViewModel()
+        private User user;
+        private ICameraatjeDbContext dbContext;
+        private ICameraatjeRepository repo;
+        public AlbumPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext)
+            :base(navigationService)
         {
-
+            this.dbContext = dbContext;
+            this.repo = repo;
         }
-	}
+
+        private IList<Picture> picture;
+        public IList<Picture> Picture
+        {
+            set { SetProperty(ref picture, value); }
+            get { return picture; }
+        }
+
+
+        public async override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("User"))
+            {
+                user = (User)parameters["User"];
+            }
+
+            Picture = await repo.GetPicturesAsync(user);
+        }
+    }
 }

@@ -4,5 +4,23 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="CleanProject.Views.AlbumPage">
-  
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Picture}" Margin="20" SelectedItem="{Binding SelectedKid, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                            
+                            <Image HorizontalOptions="CenterAndExpand" 
+                                   Source="{Binding PictureUrl}"
+                                   WidthRequest="200"
+                                   HeightRequest="500"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+
 </ContentPage>
