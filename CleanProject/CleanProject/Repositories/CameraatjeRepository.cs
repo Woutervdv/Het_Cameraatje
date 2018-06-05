@@ -29,6 +29,15 @@ namespace CleanProject.Repositories
             return await dbContext.Kid.ToListAsync();
         }
 
+        public string GetLocationByPicture(Picture picture)
+        {
+            var location = from loc in dbContext.Location
+                           where loc.LocationID == picture.LocationID
+                           select loc.LocationName;
+
+            return location.FirstOrDefault();
+        }
+
         public async Task<List<Location>> GetLocations()
         {
             return await dbContext.Location.ToListAsync();

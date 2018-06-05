@@ -13,11 +13,18 @@ namespace CleanProject.ViewModels
 	{
         private ICameraatjeDbContext dbContext;
         private ICameraatjeRepository repo;
+        private Location location;
         private Picture pic;
         public Picture Pic
         {
             set { SetProperty(ref pic, value); }
             get { return pic; }
+        }
+        private string place;
+        public string Place
+        {
+            set { SetProperty(ref place, value); }
+            get { return place; }
         }
 
         public DetailsPhotoPageViewModel(INavigationService navigationService, ICameraatjeRepository repo, ICameraatjeDbContext dbContext)
@@ -37,7 +44,10 @@ namespace CleanProject.ViewModels
                 Pic = (Picture)parameters["Picture"];
             }
 
-           
+
+
+            Place = repo.GetLocationByPicture(Pic);
+
         }
 
 
