@@ -21,6 +21,7 @@ namespace CleanProject.Repositories
 
         public async Task<List<Class>> GetClassesAsync()
         {
+
             return await dbContext.Class.ToListAsync();
         }
 
@@ -47,19 +48,9 @@ namespace CleanProject.Repositories
 
         public async Task<List<Picture>> GetPicturesAsync(User fbuser)
         {
-            ////get current user
+            
             var user = fbuser.Auth.User.Email;
-            ////get Kid that is linked to this account
-            //var ID = from kid in dbContext.Kid
-            //         where kid.Email == user
-            //         select kid.KidID;
-
-            //var images = from pictures in dbContext.Picture
-            //             where pictures.AuthorID == Convert.ToInt32(ID)
-            //             select pictures;
-
-
-            //return await images.ToListAsync();
+            
 
             var id = from kid in dbContext.Kid
                      where kid.Email == user
@@ -74,6 +65,13 @@ namespace CleanProject.Repositories
 
         }
 
+
+
+
+
+
+
+        //saving methods
         public async Task<int> SaveClass(Class klas)
         {
             if (klas.ClassID == 0)

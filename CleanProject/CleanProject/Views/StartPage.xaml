@@ -20,7 +20,8 @@
                          Grid.Column="0">
                 <Button Command="{Binding makeDummyData}" 
                         Text="Dummy" 
-                        TextColor="White"  
+                        TextColor="White" 
+                        IsVisible="{Binding Check}"
                          />
             </StackLayout>
             <StackLayout HorizontalOptions="Center"
