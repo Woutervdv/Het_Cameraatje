@@ -113,7 +113,7 @@ namespace CleanProject.ViewModels
                 await dialogService.DisplayAlertAsync("Succes", "Dummy data created :)", "OK");
             }catch(Exception ex)
             {
-                await dialogService.DisplayAlertAsync("Whoops", ex.message, "ok");
+                await dialogService.DisplayAlertAsync("Whoops", ex.Message, "ok");
             }
             
         }
